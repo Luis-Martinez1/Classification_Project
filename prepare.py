@@ -5,32 +5,6 @@ from sklearn.model_selection import train_test_split
 
 
 
-def prep_iris(df):
-    '''takes in the iris dataframe as an argument and returns the dataframe
-    with unnecessary columns dropped and the [species] column name changed for easier reading. 
-    '''
-    df.drop(columns=['species_id', 'measurement_id'], inplace=True)
-    df.rename(columns={'species_name': 'species'}, inplace=True)
-    return df
-
-
-
-
-
-def clean_titanic(df):
-    """
-    Takes in the Titanic DataFrame as an argument and returns the Dataframe with unnecessary columns dropped, 
-    casts [pclass] column to object since it will be handled as object, and
-    fills null values for [embark_town] with the column mode.
-    """
-    df = df.drop(columns=['passenger_id', 'embarked', 'age','deck', 'class'])
-    df.pclass = df.pclass.astype(object)
-    df.embark_town = df.embark_town.fillna('Southampton')
-    return df
-
-
-
-
 
 
 
@@ -72,3 +46,34 @@ def split_data(df, target):
     print(f"test: {len(test)} ({round(len(test)/len(df), 2)*100}% of {len(df)})")
 
     return train, validate, test
+
+
+
+
+def preprocess_telco(train_df, val_df, test_df):
+    '''
+    preprocess_telco will take in three pandas dataframes
+    of an acquired and prepared telco data set that has also been split into train, validate, and test.
+    
+    output:
+    encoded, ML-ready versions of train, validate, and test with 
+    object type colummncs encoded in the one-hot fashion
+    return: (pd.DataFrame, pd.DataFrame, pd.DataFrame)
+    '''
+     
+    encoding_vars = []
+    # loop through the columns to fill encoded_vars with appropriate datatype 
+    for col in train_df.columns:
+        if train_df[col].dtype == 'O':
+            encoding_vars.append(col)
+    # initialize an empty list to hold our encoded dataframes:
+    encoded_dfs = []
+    for df in [train_df, val_df, test_df]:
+        df_encoded_cats = pd.get_dummies(
+            df[encoding_vars],
+              drop_first=True).astype(int)
+        encoded_dfs.append(pd.concat(
+            [df,
+            df_encoded_cats],
+            axis=1).drop(columns=encoding_vars))
+    return encoded_dfs
