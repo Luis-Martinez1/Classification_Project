@@ -29,39 +29,4 @@ def get_telco_data():
     return df
 
 
-def get_iris_data():
-    """
-    takes in no argument and
-    returns iris database query as a pandas dataframe
-    """
-    filename = "iris.csv"
-    if os.path.isfile(filename):
-        df = pd.read_csv(filename)
-    else:
-        query = """
-        SELECT *
-        FROM measurements
-        JOIN species
-        USING (species_id);"""
-        connection = get_db_url("iris_db")
-        df = pd.read_sql(query, connection)
-        df.to_csv(filename, index=False)
-    return df
-
-
-def get_titanic_data():
-    """
-    takes in no arguments and 
-    returns the titanic database query a pandas dataframe
-    """
-    filename = "titanic.csv"
-    if os.path.isfile(filename):
-        df = pd.read_csv(filename)
-    else:
-        query = "SELECT * FROM passengers"
-        connection = get_db_url("titanic_db")
-        df = pd.read_sql(query, connection)
-        df.to_csv(filename, index=False)
-    return df
-
 
