@@ -14,6 +14,8 @@ def prep_telco(df):
     df['total_add_on_count'] = df[columns_to_sum].apply(lambda row: sum(1 if value == 'Yes' else 0 if value == 'No' else 9 for value in row), axis=1)
     # change the number 54 to no internet service
     df['total_add_on_count'].replace({54:'No internet service'}, inplace=True)
+    df.drop(columns=df[columns_to_sum], inplace=True)
+
 
     df.drop(columns=['payment_type_id', 'internet_service_type_id', 'contract_type_id', 'phone_service'], inplace=True)
     df.total_charges = df.total_charges.str.replace(' ', '0.0')
