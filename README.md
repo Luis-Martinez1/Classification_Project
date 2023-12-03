@@ -13,7 +13,7 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
  
 # Initial Thoughts
  
-My My initial hypothesis is that drivers of churn will be a combinations of factors related to customer service, communcaition services rendered, and charges to customers.
+My My initial hypothesis is that drivers of churn will be a combinations of factors related to customer service, communcaition services provided, and customer charges.
  
 # The Plan
  
@@ -24,6 +24,7 @@ My My initial hypothesis is that drivers of churn will be a combinations of fact
        * payment_type_id
        * internet_service_type_id
        * contract_type_id
+       * phone_service
        
    * Change Index
        * customer_id will be used as the index 
@@ -33,20 +34,20 @@ My My initial hypothesis is that drivers of churn will be a combinations of fact
        * internet_service_type null values will have "No internet service" to match other columns 
        
    * Change data tyoe
-       * total_charges data type is changed to a float 
-       * senior_citizen is changed from boolean to string for easier reading
+       * total_charges changed to a numerical type.
+       * senior_citizen canged to non-numerical type.
+
        
    * Create Engineered columns from existing data
-       * !!!!!enter new columns here when you combine multiple columns into one!!!!!!!!!
-       * !!!!!enter new columns here when you combine multiple columns into one!!!!!!!!!
-       * !!!!!enter new columns here when you combine multiple columns into one!!!!!!!!!
+       * phone_service_type holds every possible value for each customer's phone status 
+       * total_add_on_count counts the number of add-ons for each customer with internet and includes customers without internet 
 
-* Explore data in search of drivers of upsets
+* Explore data in search of drivers of churn
    * Answer the following initial questions
-       * Is there a relationship between contract type and whether or not someone has churned?
+       * Is there a relationship between contract type and whether or not a customer has churned?
        * How do different payment methods relate to churn?
-       * Is there a correlation between the number of additional services rendered and churn?
-       * Does customer tenure effect churn?
+       * Is there a correlation between the number of add-on services rendered and churn?
+       * Does customer tenure affect churn?
       
 * Develop a Model to predict if a customer has churned or not
    * Use drivers identified in explore to build predictive models of different types
@@ -60,18 +61,22 @@ My My initial hypothesis is that drivers of churn will be a combinations of fact
 
 | Feature | Definition |
 |:--------|:-----------|
-|Rated| True or False, The game's result is reflected in each player's rating|
-|Winning Pieces| The color of pieces the winning player was moving|
-|White Rating| Rating of the player moving the white pieces using the Glicko-2 rating method for games played on Lichess|
-|Black Rating| Rating of the player moving the white pieces using the Glicko-2 rating method for games played on Lichess|
-|Rating Difference| The difference in rating between the players in the game|
-|Game Rating| The average rating of the two players in the game|
-|Lower Rated White| True or False, The lower rated player is moving the white pieces|
-|Opening Name| The name of the opening played in the game|
-|Time Control Group| The amount of time allotted to each player to make their moves, **Standard** (60 min or more), **Rapid** (30 - 15 min), **Blitz** (5 - 3 min), or **Bullet** (2 or less), **Other** (any other time limit)|
-|Upset (Target)| True or False, The lower rated player won the game|
-|Additional Features|Encoded and values for categorical data and scaled versions continuous data|
- 
+|gender| Male or Female, The gender the customer identifies with|
+|senior_citizen| Yes or No, Whether or not a customer is over the age of 60|
+|partner| Yes or No, Whether or not a customer is married|
+|dependents| Yes or No, Whether or not a customer has children|
+|tenure| how many months a customer has been paying for Telco services|
+|phone_service_type| Whether or not a customer has phone service and if it is multiple lines or single|
+|paperless_billing| Yes, No, or No internet service, Whether or not a customer has children|
+|monthly_charges| The charges per customer for each month of their tenure|
+|total_charges| The aggaragate amount of monthly charges throughout a cutomer's tenure|
+|churn (target)| Yes or No, The customer has left the company as their telecommuncations service provider|
+|contract_type| Montly, One-Year, or Two-years, The type of contact type the customer has|
+|internet_service_type|  None, Fiber, or DSL, The type of internet service the customer has|
+|payment_type| Electronic check, Mailed check, Bank transfer, or Credit card, The type of payment a customer uses|
+|contract_type|Encoded and values for categorical data and scaled versions continuous data|
+|total_add_on_count| Encoded values for the number of add_ons a customer is rendered|
+
 # Steps to Reproduce
 1) Clone this repo.
 2) Acquire the data from Codeup DS Databse Server.
@@ -87,7 +92,10 @@ My My initial hypothesis is that drivers of churn will be a combinations of fact
 * The mean rating of players in a game is not a driver of upsets
 * The difference in player rating is a driver of upsets
 * A player's choice of opening is a driver of upsets, however its influence is complicated and I would need more time to discover what role it plays
+* If I had more time, I would look through each add-on and see which specific add-on has a relationship with whether or not a customer has churned. 
+
  
 # Recommendations
-* To increase the skill intensity of a game add to the length of time players are able to consider their moves
-* Based on the data longer time controls make it less likely for a less skilled player to beat a more skilled player
+* Based on the data, customers should be signup up for longer contract types and provided the option to use automatic payemnts.
+* Customers should be offered more add-on services and offered lower rates for longer contract types to prevent churning before 24 month tenure.
+* If I had more time, I would look into the exact add-ons that are related to customer churn. 
