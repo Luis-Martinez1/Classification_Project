@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 
 
@@ -16,8 +17,16 @@ def prep_telco(df):
     df['total_add_on_count'].replace({54:'No internet service'}, inplace=True)
     df.drop(columns=df[columns_to_sum], inplace=True)
 
+    # bin edges for each year
+    bins = [0, 12, 24, 36, 48, 60, 72, 84]  # adjust as needed
 
-    df.drop(columns=['payment_type_id', 'internet_service_type_id', 'contract_type_id', 'phone_service'], inplace=True)
+    # Create labels for the bins (representing years)
+    labels = ['0', '1', '2', '3', '4', '5', '6']
+
+    # Bin the 'tenure' column
+    df['tenure_years'] = pd.cut(df['tenure'], bins=bins, labels=labels, right=False)
+
+    df.drop(columns=['payment_type_id', 'internet_service_type_id', 'contract_type_id', 'phone_service', 'tenure'], inplace=True)
     df.total_charges = df.total_charges.str.replace(' ', '0.0')
     df.internet_service_type.fillna('No internet service', inplace = True)
     df['total_charges'] = df['total_charges'].astype(float)
@@ -98,7 +107,17 @@ def preprocess_telco(train_df, val_df, test_df):
 
 
 
+def visualize_churn_distribution(df):
+    # Count the number of customers who have churned and those who haven't
+    churn_counts = df['churn'].value_counts()
 
+    # Plot a pie chart
+    labels = ['Not Churned', 'Churned']
+    colors = ['green', 'red']
+
+    plt.pie(churn_counts, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+    plt.title('Distribution of Churned vs Not Churned Customers')
+    plt.show()
 
 
 
