@@ -141,7 +141,10 @@ def analyze_total_add_on_count(df, column, target_column):
     order = ['0', '1', '2', '3', '4', '5', '6', 'No internet service']
 
     # Convert the column to categorical with the specified order
-    df['total_add_on_count'] = pd.Categorical(df['total_add_on_count'], categories=order, ordered=True)
+    # df[column] = pd.Categorical(df[column], categories=order, ordered=True)
+
+    df[column] = pd.Categorical(df[column], ordered=True)
+
 
     # Create the countplot
     contingency_table.plot.bar(stacked=False, color=['lightsteelblue', 'sandybrown'], figsize=(6, 3))
@@ -161,6 +164,8 @@ def analyze_total_add_on_count(df, column, target_column):
     print("\nChi-squared test:")
     print(f"Chi2 Statistic: {chi2}")
     print(f"P-value: {p}")
+
+
 
 
 
