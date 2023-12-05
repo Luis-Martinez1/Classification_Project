@@ -84,6 +84,39 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
 |total_add_on_count| Encoded values for the number of add_ons a customer is rendered|
 |tenure_years| the number of years a customer has had an account with Telco|
 
+
+
+|-----------------------------|------------------------------------------------------|
+| customer_id                  | Unique identifier for each customer.                |
+| gender                       | Gender of the customer.                             |
+| senior_citizen               | Indicates if the customer is a senior citizen (1) or not (0). |
+| partner                      | Indicates if the customer has a partner (Yes/No).    |
+| dependents                   | Indicates if the customer has dependents (Yes/No).   |
+| tenure                       | Number of months the customer has been with the company. |
+| phone_service                | Indicates if the customer has phone service (Yes/No). |
+| multiple_lines               | Indicates if the customer has multiple phone lines (Yes/No). |
+| internet_service_type_id    | Identifies the type of internet service the customer has. |
+| online_security              | Indicates if the customer has online security service (Yes/No). |
+| online_backup                | Indicates if the customer has online backup service (Yes/No). |
+| device_protection            | Indicates if the customer has device protection service (Yes/No). |
+| tech_support                 | Indicates if the customer has tech support service (Yes/No). |
+| streaming_tv                 | Indicates if the customer has streaming TV service (Yes/No). |
+| streaming_movies             | Indicates if the customer has streaming movie service (Yes/No). |
+| contract_type_id            | Identifies the type of contract the customer has.    |
+| paperless_billing           | Indicates if the customer has paperless billing (Yes/No). |
+| payment_type_id             | Identifies the type of payment method the customer uses. |
+| monthly_charges             | The amount charged to the customer per month.       |
+| total_charges               | The total amount charged to the customer.           |
+| churn                       | Indicates if the customer has churned (Yes/No).     |
+| internet_service_type       | Description of the internet service type.           |
+| payment_type                | Description of the payment method.                  |
+| contract_type               | Description of the contract type.                   |
+
+
+
+
+
+
 # Steps to Reproduce
 1) Clone this repo.
 2) Acquire the data from Codeup DS Databse Server.
