@@ -69,51 +69,30 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
 
 | Feature | Definition |
 |:--------|:-----------|
+|customer_id| Unique identifier for each customer|
 |gender| Male or Female, The gender the customer identifies with|
 |senior_citizen| Yes or No, Whether or not a customer is over the age of 60|
 |partner| Yes or No, Whether or not a customer is married|
 |dependents| Yes or No, Whether or not a customer has children|
-|phone_service_type| Whether or not a customer has phone service and if it is multiple lines or single|
+|tenure| Number of months the customer has been with the company|
+|phone_service| Yes or No, Indicates if the customer has phone service|
+|multiple_lines| Yes or No, Indicates if the customer has multiple phone lines|
+|internet_service_type_id| Identifies the type of internet service the customer has|
+|online_security| Yes or No, Indicates if the customer has online security service|
+|online_backup| Yes or No, Indicates if the customer has online backup service|
+|device_protection| Yes or No, Indicates if the customer has device protection service|
+|tech_support| Yes or No, Indicates if the customer has tech support service|
+|streaming_tv| Yes or No, Indicates if the customer has streaming TV service|
+|streaming_movies| Yes or No, Indicates if the customer has streaming movie service|
+|contract_type_id| Identifies the type of contract the customer has|
 |paperless_billing| Yes, No, or No internet service, Whether or not a customer has children|
+|payment_type_id| Identifies the type of payment method the customer uses|
 |monthly_charges| The charges per customer for each month of their tenure|
 |total_charges| The aggaragate amount of monthly charges throughout a cutomer's tenure|
 |churn (target)| Yes or No, The customer has left the company as their telecommuncations service provider|
 |contract_type| Montly, One-Year, or Two-years, The type of contact type the customer has|
 |internet_service_type|  None, Fiber, or DSL, The type of internet service the customer has|
 |payment_type| Electronic check, Mailed check, Bank transfer, or Credit card, The type of payment a customer uses|
-|total_add_on_count| Encoded values for the number of add_ons a customer is rendered|
-|tenure_years| the number of years a customer has had an account with Telco|
-
-
-
-|-----------------------------|------------------------------------------------------|
-| customer_id                  | Unique identifier for each customer.                |
-| gender                       | Gender of the customer.                             |
-| senior_citizen               | Indicates if the customer is a senior citizen (1) or not (0). |
-| partner                      | Indicates if the customer has a partner (Yes/No).    |
-| dependents                   | Indicates if the customer has dependents (Yes/No).   |
-| tenure                       | Number of months the customer has been with the company. |
-| phone_service                | Indicates if the customer has phone service (Yes/No). |
-| multiple_lines               | Indicates if the customer has multiple phone lines (Yes/No). |
-| internet_service_type_id    | Identifies the type of internet service the customer has. |
-| online_security              | Indicates if the customer has online security service (Yes/No). |
-| online_backup                | Indicates if the customer has online backup service (Yes/No). |
-| device_protection            | Indicates if the customer has device protection service (Yes/No). |
-| tech_support                 | Indicates if the customer has tech support service (Yes/No). |
-| streaming_tv                 | Indicates if the customer has streaming TV service (Yes/No). |
-| streaming_movies             | Indicates if the customer has streaming movie service (Yes/No). |
-| contract_type_id            | Identifies the type of contract the customer has.    |
-| paperless_billing           | Indicates if the customer has paperless billing (Yes/No). |
-| payment_type_id             | Identifies the type of payment method the customer uses. |
-| monthly_charges             | The amount charged to the customer per month.       |
-| total_charges               | The total amount charged to the customer.           |
-| churn                       | Indicates if the customer has churned (Yes/No).     |
-| internet_service_type       | Description of the internet service type.           |
-| payment_type                | Description of the payment method.                  |
-| contract_type               | Description of the contract type.                   |
-
-
-
 
 
 
