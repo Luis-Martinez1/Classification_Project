@@ -12,9 +12,12 @@ def prep_telco(df):
     '''
     columns_to_sum = ['online_security', 'online_backup', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies']
     # New column that looks through each row and when a "yes" is found in columns_to_sum, it adds a 1
+
     df['total_add_on_count'] = df[columns_to_sum].apply(lambda row: sum(1 if value == 'Yes' else 0 if value == 'No' else 9 for value in row), axis=1)
     # change the number 54 to no internet service
+
     df['total_add_on_count'].replace({54:'No internet service'}, inplace=True)
+
     df.drop(columns=df[columns_to_sum], inplace=True)
 
     # bin edges for each year
@@ -79,19 +82,19 @@ def preprocess_telco(train_df, val_df, test_df):
     It returns DataFrames with all string values changed to represent thier binary equivalent.
     '''
     
-    columns_to_convert = ['gender', 'senior_citizen', 'partner', 'dependents', 'online_security', 'online_backup', 'device_protection',
-                          'tech_support', 'streaming_tv', 'streaming_movies', 'paperless_billing', 'churn']
+    columns_to_convert = ['gender', 'senior_citizen', 'partner', 'dependents', 'paperless_billing', 'churn', 'tenure_years', 'total_add_on_count']
 
     encoding_vars = ['contract_type', 'internet_service_type', 'payment_type', 'phone_service_type']
 
     encoded_dfs = []
     for df in [train_df, val_df, test_df]:
+        # Replace certain string values with numerical values
+        df.replace({"No": 0, "Yes": 1, "Male": 1, "Female": 0, "No internet service": 0}, inplace=True)
+
         df_encoded_cats = pd.get_dummies(df[encoding_vars], drop_first=True).astype(int)
         df = pd.concat([df, df_encoded_cats], axis=1).drop(columns=encoding_vars)
         
-        # Replace certain string values with numerical values
-        df.replace({"No": 0, "Yes": 1, "Male": 1, "Female": 0, "No internet service": 0}, inplace=True)
-        
+
         # Convert specified columns to integer type
         df[columns_to_convert] = df[columns_to_convert].astype(int)
         
