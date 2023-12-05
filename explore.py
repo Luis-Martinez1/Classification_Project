@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 
 def visualize_churn_distribution(df):
     '''
-    Trakes in a DataFrame and returns a pie plot visual of the 'churn' column
-    distribution for the  data set. 
+    Trakes in a DataFrame and returns a pie plot visual of the 'churn' column.
+    This represents the distribution of the target variable for the data set. 
     '''
     # Count the number of customers who have churned and those who haven't
     churn_counts = df['churn'].value_counts()
@@ -35,6 +35,12 @@ def visualize_churn_distribution(df):
 
 
 def analyze_tenure_years(df, column, target_column):
+    '''
+    Takes in a DataFrame the tenure years column, and the target column. 
+    Returns: A printed contingency table, the visualization of the contingency table as a count plot, 
+    and the results of the chi sqaured test of independence.
+    
+    '''
     # Create a contingency table
     contingency_table = pd.crosstab(df[column], df[target_column])
     
@@ -43,7 +49,6 @@ def analyze_tenure_years(df, column, target_column):
     sns.countplot(x=column, hue=target_column, data=df, palette='pastel')
     plt.title(f' Bar Chart - {column} vs {target_column}')
     plt.show()
-
 
     # Perform a chi-squared test
     chi2, p, _, _ = chi2_contingency(contingency_table)
@@ -63,15 +68,18 @@ def analyze_tenure_years(df, column, target_column):
 
 
 def analyze_contract_type(df, column, target_column):
+    '''
+    Function takes in DataFrame, the contract type column name, and the target variable column name.
+    Returns: Printed contingency table, a bar chart showing contract type  vs. churn, and the results of the chi sqaured test. 
+    '''
     # Create a contingency table
     contingency_table = pd.crosstab(df[column], df[target_column])
 
-    # Plot a stacked bar chart (count plot)
+    # Plot a bar chart (count plot)
     plt.figure(figsize=(6, 3))
     sns.countplot(x=column, hue=target_column, data=df, palette='pastel')
     plt.title(f' Bar Chart - {column} vs {target_column}')
     plt.show()
-
 
     # Perform a chi-squared test
     chi2, p, _, _ = chi2_contingency(contingency_table)
@@ -92,11 +100,9 @@ def analyze_contract_type(df, column, target_column):
 
 def analyze_monthly_charges(df, continuous_column, target_column):
     """
-    Perform Mann-Whitney U test and visualize the relationship with a box plot.
-
     Parameters:
     - df: DataFrame
-    - continuous_column: str, name of the continuous column
+    - continuous_column: monthly charges
     - target_column: str, name of the target (categorical) column
 
     Returns:
@@ -134,17 +140,18 @@ def analyze_monthly_charges(df, continuous_column, target_column):
 
 
 def analyze_total_add_on_count(df, column, target_column):
+    '''
+    Function takes in a DataFrame, the total_add_on_count column, and the target variable.
+    It generates a contingency table using pandas crosstab, orders the add-on values for plotting purposes, 
+    creates a count plot of the contingency table, performs a chi squared test using chi2_contingency, displays the table and the results.
+    '''
     # Create a contingency table
     contingency_table = pd.crosstab(df[column], df[target_column])
     
-    # Assuming df is your DataFrame and 'total_add_on_count' is the column you want to plot
+    # Order the values into something that makes sense for a plot
     order = ['0', '1', '2', '3', '4', '5', '6', 'No internet service']
-
     # Convert the column to categorical with the specified order
-    # df[column] = pd.Categorical(df[column], categories=order, ordered=True)
-
     df[column] = pd.Categorical(df[column], ordered=True)
-
 
     # Create the countplot
     contingency_table.plot.bar(stacked=False, color=['lightsteelblue', 'sandybrown'], figsize=(6, 3))
@@ -173,6 +180,11 @@ def analyze_total_add_on_count(df, column, target_column):
 
 
 def analyze_payment_type(df, column, target_column):
+    '''
+    Functions takes in a dataframe, the payment type column, and the target column. 
+    Returns: First generates a contingency table using pandas crosstab, a count plot of the payment type vs. target variable, 
+    it performs a chi squared test of independence, and prints the results of the test as well as the contingency table.
+    '''
     # Create a contingency table
     contingency_table = pd.crosstab(df[column], df[target_column])
 
@@ -181,7 +193,6 @@ def analyze_payment_type(df, column, target_column):
     sns.countplot(x=column, hue=target_column, data=df, palette='pastel')
     plt.title(f' Bar Chart - {column} vs {target_column}')
     plt.show()
-
 
     # Perform a chi-squared test
     chi2, p, _, _ = chi2_contingency(contingency_table)
