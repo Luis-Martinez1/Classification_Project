@@ -73,7 +73,6 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
 |senior_citizen| Yes or No, Whether or not a customer is over the age of 60|
 |partner| Yes or No, Whether or not a customer is married|
 |dependents| Yes or No, Whether or not a customer has children|
-|tenure_years| the number of years a customer has had an account with Telco|
 |phone_service_type| Whether or not a customer has phone service and if it is multiple lines or single|
 |paperless_billing| Yes, No, or No internet service, Whether or not a customer has children|
 |monthly_charges| The charges per customer for each month of their tenure|
@@ -82,8 +81,8 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
 |contract_type| Montly, One-Year, or Two-years, The type of contact type the customer has|
 |internet_service_type|  None, Fiber, or DSL, The type of internet service the customer has|
 |payment_type| Electronic check, Mailed check, Bank transfer, or Credit card, The type of payment a customer uses|
-|contract_type|Encoded and values for categorical data and scaled versions continuous data|
 |total_add_on_count| Encoded values for the number of add_ons a customer is rendered|
+|tenure_years| the number of years a customer has had an account with Telco|
 
 # Steps to Reproduce
 1) Clone this repo.
@@ -96,7 +95,7 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
 * Recommended more add-ons for customers to use. 
 * Promote either add on-upgrades or loyalty programs to csutomers. 
 * The number of add-ons driver churn but I did not look at each add-on and I would need more time to discover what specific add-ons are driving churn
-* If I had more time, I would .......
+* If I had more time, I would like to consider not just the count of add-ons but the specific services and their relationship to churn.
 
  
 # Recommendations
