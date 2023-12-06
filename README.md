@@ -50,8 +50,6 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
    * Answer the following initial questions:
        * How often do customers churn?
        * Are new customers more likely to churn?
-       * Do customers with short contracts churn more?
-       * Are customers with higher monthly bills more likely to churn?
        * Do the number of add-ons relate to churn? 
        * How do payment methods relate to churn?
       
@@ -103,15 +101,13 @@ This projects delves into the Telco Customer Churn data to identify key drivers 
 4) Run notebook.
  
 # Takeaways and Conclusions
-* Recommend longer contract types. 
-* Recommended more add-ons for customers to use. 
-* Promote either add on-upgrades or loyalty programs to csutomers. 
-* The number of add-ons driver churn but I did not look at each add-on and I would need more time to discover what specific add-ons are driving churn
+* There are many drivers of churn. 
+* More exploration and modeling is needed to expand what we know about the drivers of churn. 
+* The number of add-ons is a driver of churn but I did not look at each add-on and I would need more time to discover what specific add-ons are driving churn.
 * If I had more time, I would like to consider not just the count of add-ons but the specific services and their relationship to churn.
 
  
 # Recommendations
-* Based on the data, customers should be signup up for longer contract types and provided the option to use automatic payemnts.
-* Customers should be offered more add-on services and offered lower rates for longer contract types to prevent churning before 24 month tenure.
-* If I had more time, I would look into the exact add-ons that are related to customer churn. 
+* Based on the data, customers could be offered longer contract and provided the option to use automatic payemnts.
+* Customers should be offered add-on services that suits their needs and offered lower rates for longer contract types to prevent churning before 24 month tenure.
 * Collect more customer data to imporove future models.
