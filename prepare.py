@@ -100,11 +100,13 @@ def preprocess_telco(train_df, val_df, test_df):
     and returns train, validate, and test dataframes ready for machine learning.
     It returns DataFrames with all string values changed to represent a binary equivalent.
     '''
-    
+    # variable for all of our columns that should be in a numerical type
     columns_to_convert = ['gender', 'senior_citizen', 'partner', 'dependents', 'paperless_billing', 'churn', 'tenure_years', 'total_add_on_count']
 
+    # variable for our features with string values
     encoding_vars = ['contract_type', 'internet_service_type', 'payment_type', 'phone_service_type']
 
+    # Initialize a lsit of dataframes
     encoded_dfs = []
     for df in [train_df, val_df, test_df]:
         # Replace certain string values with numerical values
@@ -119,6 +121,7 @@ def preprocess_telco(train_df, val_df, test_df):
         # Convert specified columns to integer type
         df[columns_to_convert] = df[columns_to_convert].astype(int)
         
+        # add changes to all three dataframes
         encoded_dfs.append(df)
 
     return encoded_dfs
